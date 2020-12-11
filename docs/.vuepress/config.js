@@ -19,7 +19,7 @@ module.exports = {
     nav: [
       { text: '首页', link: '/' },
       { text: '项目管理', link: '/projectManage/project' },
-      { text: 'demo测试', link: '/demo/dada' }
+      { text: 'demo', link: '/demo/demos' }
     ],
     sidebar: {
       '/projectManage': [
@@ -37,8 +37,8 @@ module.exports = {
           title: 'demo',
           collapsable: false,
           children: [
-            './demo/dada',
-            './demo/demo'
+            './demo/test',
+            './demo/demos'
           ]
         }
       ],
