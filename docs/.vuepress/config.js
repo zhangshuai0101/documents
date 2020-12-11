@@ -13,7 +13,8 @@ module.exports = {
     lastUpdated: '上次修改时间',
     editLinks: true,
     editLinkText: '修改此页面',
-    repo: 'vuejs/vuepress',
+    repo: 'zhangshuai0101/documents/',
+    docsDir: 'docs',
     repoLabel: '仓库地址',
     nav: [
       { text: '首页', link: '/' },
