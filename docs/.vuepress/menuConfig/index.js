@@ -1,10 +1,9 @@
 //首页文档分类下需要展示的内容以及左侧菜单栏显示的内容
 module.exports = {
-  documentsMenu : [
+  documentsData: [
     {
       title: '项目管理',
       icon: '',
-      activeUrl: '/projectManage',
       children: [
         {
           title: '项目需求项',

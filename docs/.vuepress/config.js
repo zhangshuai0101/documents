@@ -1,6 +1,4 @@
 const path = require("path");
-const menuData = require("./menuConfig");
-
 module.exports = {
   title: '文档库', // 设置网站标题
   dest: './dist', // 设置输出目录
@@ -18,22 +16,9 @@ module.exports = {
     repo: 'zhangshuai0101/documents/',
     docsDir: 'docs',
     repoLabel: '仓库地址',
+    sidebarDepth: 2,
     nav: [
       { text: '首页', link: '/',id: 'home' },
-      // { 
-      //   text: '项目管理',id: 'project',
-      //   items: [
-      //     { text: '需求项', link: '/projectManage/demand/' },
-      //     { text: '版本管理', link: '/projectManage/project/' }
-      //   ]
-      // },
-      // { 
-      //   text: '更多文档',id: 'more',
-      //   items: [
-      //     { text: 'icdp', link: '/projectManage/demand/' },
-      //     { text: 'itm', link: '/projectManage/project/' }
-      //   ]
-      // },
       { text: '使用手册',id: 'operationManual', link: '/operationManual/home' },
     ],
     sidebar: {
@@ -48,19 +33,19 @@ module.exports = {
             },
             {
               title: '版本任务',
-              path: '/projectManage/project'
+              path: '/projectManage/task'
             }
           ]
         }
       ],
       '/operationManual': [
         {
-          title: '介绍',
+          title: '使用手册',
           collapsable: false,
           children: [
             {
               path: '/operationManual/home',
-              title: '如何使用'
+              title: '简介'
             }
           ]
         }
@@ -72,16 +57,4 @@ module.exports = {
       .modules
       .add(path.resolve(__dirname, './node_modules'))
   }
-}
-
-function getDocumentMenu(activeUrl) {
-  let siderData = [{}];
-  menuData.documentsMenu.map(item => {
-    if(item.activeUrl == activeUrl){
-      siderData[0].title = item.title;
-      siderData[0].collapsable = false;
-      siderData[0].children = item.children;
-    }
-  });
-  return siderData
 }
