@@ -1,18 +1,12 @@
 <template>
   <ParentLayout>
-    <!-- <Navbar /> -->
-    <!-- <template #sidebar-top>
-      <BackHome />
-    </template> -->
     <component :is="layout"/>
   </ParentLayout>
 </template>
 <script>
 import ParentLayout from '@parent-theme/layouts/Layout.vue'
-// import Navbar from '@theme/components/Navbar'
-import BackHome from '@theme/components/BackHome'
 export default {
-  components: { ParentLayout, BackHome },
+  components: { ParentLayout },
   data() {
     return {
 

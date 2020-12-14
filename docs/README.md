@@ -5,4 +5,4 @@ heroText: null
 tagline: null
 ---
 
-<demo-1 />
+<HomeView />
