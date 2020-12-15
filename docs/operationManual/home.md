@@ -99,34 +99,34 @@
   
   + 将以上文件文件配置完成后，便可访问该文档。同时，为了更好的使用体验，需要临时将首页展示数据加入到config/menuConfig下，后续将做一个配置入口来配置
   
-    ```
-    ├── docs
-    │   ├── .vuepress 
-    │   ├── ├── config
-    │   ├── ├── └──menuconfig.js (用于配置首页展示数据)
-    └── └── └── config.js (用于配置nav和sider)
+  ```
+  ├── docs
+  │   ├── .vuepress 
+  │   ├── ├── config
+  │   ├── ├── └──menuconfig.js (用于配置首页展示数据)
+  └── └── └── config.js (用于配置nav和sider)
 
-    ```
+  ```
   + 用户在该文件 documentData 对象属性下进行代码配置，具体代码配置如下
 
-    ```js
-    module.exports = {
-      documentsData : [
-        {
-          title: '项目管理',  // 首页左侧菜单数据，文档类型名称
-          icon: '',
-          children: [ // 右侧详情数据
-            {
-              title: '项目需求项',             // 文档类型下包含的子级名称
-              path: '/projectManage/demand', // path对应的是目录层级关系
-            },
-            {
-              title: '版本任务',
-              path: '/projectManage/project'
-            }
-          ]
-        }
-      ]
-    }
+  ```js
+  module.exports = {
+    documentsData : [
+      {
+        title: '项目管理',  // 首页左侧菜单数据，文档类型名称
+        icon: '',
+        children: [ // 右侧详情数据
+          {
+            title: '项目需求项',             // 文档类型下包含的子级名称
+            path: '/projectManage/demand', // path对应的是目录层级关系
+          },
+          {
+            title: '版本任务',
+            path: '/projectManage/project'
+          }
+        ]
+      }
+    ]
+  }
 
-    ```
+  ```
