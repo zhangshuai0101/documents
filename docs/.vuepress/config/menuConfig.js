@@ -6,8 +6,8 @@ export default {
       icon: '',
       children: [
         {
-          title: '项目需求项',
-          path: '/projectManage/demand',
+          title: 'projectManage',
+          path: '/项目管理/demand',
         },
         {
           title: '版本任务',

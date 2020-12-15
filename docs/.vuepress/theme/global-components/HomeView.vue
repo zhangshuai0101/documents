@@ -38,7 +38,7 @@
   </el-container>
 </template>
 <script>
-import menuConfig from "../../menuConfig";
+import menuConfig from "../../config/menuConfig";
 export default {
   data() {
     return {

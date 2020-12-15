@@ -11,13 +11,11 @@
   "devDependencies": {
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
-    "vuepress": "^1.4.1",
-    "vuepress-plugin-autobar": "boboidream/vuepress-bar",
-    "vuepress-plugin-permalink-pinyin": "^1.0.0",
-    "vuepress-plugin-rpurl": "boboidream/vuepress-plugin-rpurl"
+    "vuepress": "^1.4.1"
   },
   "dependencies": {
     "async-validator": "1.11.5",
-    "element-ui": "^2.3.6"
+    "element-ui": "^2.3.6",
+    "vuepress-plugin-auto-sidebar": "^1.5.0"
   }
 }

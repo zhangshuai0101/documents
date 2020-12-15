@@ -115,8 +115,8 @@
     ```
     ├── docs
     │   ├── .vuepress 
-    │   ├── ├── menuConfig
-    │   ├── ├── └──index.js (用于配置首页展示数据)
+    │   ├── ├── config
+    │   ├── ├── └──menuconfig.js (用于配置首页展示数据)
     └── └── └── config.js (用于配置nav和sider)
 
     ```
