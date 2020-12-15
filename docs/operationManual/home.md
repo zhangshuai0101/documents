@@ -89,7 +89,7 @@
   ```js
   // 严格遵守规则进行配置
   module.exports = { 
-    //目录名称  映射的中文名称
+    //key:目录名称   value:映射的中文名称
     projectManage: "项目管理"
   }
   ```
@@ -103,7 +103,7 @@
   ├── docs
   │   ├── .vuepress 
   │   ├── ├── config
-  │   ├── ├── └──menuconfig.js (用于配置首页展示数据)
+  │   ├── ├── └──menuConfig.js (用于配置首页展示数据)
   └── └── └── config.js (用于配置nav和sider)
 
   ```
