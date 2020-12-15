@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.7.1",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "vuepress": "^1.4.1"
