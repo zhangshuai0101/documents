@@ -22,7 +22,7 @@ module.exports = {
     sidebarDepth: 2,
     nav: [
       { text: '首页', link: '/',id: 'home' },
-      { text: '使用手册',id: 'operationManual', link: '/operationManual/home' },
+      { text: '使用手册',id: 'operationManual', link: '/使用手册/介绍' },
     ]
   },
   chainWebpack: (config, isServer) => {
