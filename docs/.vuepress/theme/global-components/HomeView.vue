@@ -28,6 +28,7 @@
             <el-col 
               :span="4"
               v-for="itm in item.children" class="card-item"
+              style="margin-bottom: 10px;"
             >
               <router-link class="text-style" :to="itm.path"> {{itm.title}} </router-link>
             </el-col>
@@ -38,7 +39,7 @@
   </el-container>
 </template>
 <script>
-import menuConfig from "../../config/menuConfig";
+// import menuConfig from "../../config/menuConfig";
 export default {
   data() {
     return {
@@ -47,7 +48,32 @@ export default {
   },
   computed: {
     menuData() {
-      return menuConfig.documentsData || [];
+      //处理文档渲染数据
+      let sidebar = this.$site.themeConfig.sidebar, data = [];
+      for(let key in sidebar){
+        let childData=[];
+        sidebar[key][0].children.length > 0 && sidebar[key][0].children.map(item => {
+          childData.push({
+            path: `${key}${item}`,
+            mdPath: item == "" ? `${key.replace("/","")}README.md` : `${key.replace("/","")}${item}.md`,
+            title: ""
+          })
+        })
+        data.push({
+          title: sidebar[key][0].title,
+          children: childData
+        })
+      }
+      data.map(item => {
+        item.children.length > 0 && item.children.map(item => {
+          this.$site.pages.map(pagItm => {
+            if(item.mdPath == pagItm.relativePath){
+              item.title = pagItm.title
+            }
+          })
+        })
+      })
+      return data || [];
     }
   },
   mounted() {
