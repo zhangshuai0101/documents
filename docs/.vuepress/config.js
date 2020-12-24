@@ -20,6 +20,7 @@ module.exports = {
     docsDir: 'docs',
     repoLabel: '仓库地址',
     sidebarDepth: 2,
+    searchPlaceholder: '输入标题全局搜索',
     nav: [
       { text: '首页', link: '/',id: 'home' },
       { text: '使用手册',id: 'operationManual', link: '/使用手册/介绍' },

@@ -51,19 +51,78 @@ export default {
       //处理文档渲染数据
       let sidebar = this.$site.themeConfig.sidebar, data = [];
       for(let key in sidebar){
-        let childData=[];
-        sidebar[key][0].children.length > 0 && sidebar[key][0].children.map(item => {
-          childData.push({
-            path: `${key}${item}`,
-            mdPath: item == "" ? `${key.replace("/","")}README.md` : `${key.replace("/","")}${item}.md`,
-            title: ""
+        //当多层嵌套时
+        if((key.split('/')).length-1 == 3){
+          let keys = key;
+          keys = keys.substr(0,key.length-1);
+          keys = keys.substr(1);
+          keys = keys.split("/");
+          data.push({
+            title: keys[0],
+            children: [{
+              path: '',
+              mdPath: '',
+              title: keys[1]
+            }]
+          });
+        }else if((key.split('/')).length-1 == 4){
+          let keys = key;
+          keys = keys.substr(0,key.length-1);
+          console.log(keys)
+          keys = keys.substr(0,keys.lastIndexOf("/"))
+          
+          // keys = keys.substr(0,key.length-1);
+          console.log(keys)
+          // keys = keys.substr(1);
+          // keys = keys.split("/");
+          
+          // data.push({
+          //   title: keys[0],
+          //   children: [{
+          //     path: '',
+          //     mdPath: '',
+          //     title: keys[1]
+          //   }]
+          // });
+        }else{
+          let childData=[];
+          sidebar[key][0].children.length > 0 && sidebar[key][0].children.map(item => {
+            if(typeof item == "object"){
+              childData.push({
+                path: `${item.path}`,
+                mdPath: '',
+                title: item.title
+              })
+            }else{
+              childData.push({
+                path: `${key}${item}`,
+                mdPath: item == "" ? `${key.replace("/","")}README.md` : `${key.replace("/","")}${item}.md`,
+                title: ""
+              })
+            }
           })
-        })
-        data.push({
-          title: sidebar[key][0].title,
-          children: childData
-        })
+          data.push({
+            title: sidebar[key][0].title,
+            children: childData
+          })
+        }
       }
+      let dataInfo = {};
+      data.map((item, index) => {
+        let { title } = item;
+        if (!dataInfo[title]) {
+          dataInfo[title] = {
+            title,			
+            children: []
+          }
+        }
+        if(dataInfo[title].children.length == 0){
+          dataInfo[title].children = item.children;
+        }else{
+          dataInfo[title].children.unshift(item.children[0]);
+        }
+      });
+      data = Object.values(dataInfo); //转换成功的数据
       data.map(item => {
         item.children.length > 0 && item.children.map(item => {
           this.$site.pages.map(pagItm => {
@@ -72,12 +131,21 @@ export default {
             }
           })
         })
-      })
+      });
+      data.map(item => {
+        item.children.length > 0 && item.children.map(itm => {
+          for(let key in sidebar){
+            if(`/${item.title}/${itm.title}/` == key){
+              itm.path = `/${item.title}/${itm.title}/${sidebar[key][0].children[0]}`
+            }
+          }
+        })
+      });
       return data || [];
     }
   },
   mounted() {
-    
+    console.log(this)
   },
   methods: {
     onScroll (e) {

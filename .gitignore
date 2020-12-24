@@ -6,3 +6,4 @@ _book
 .vuepress/dist
 deploy.sh
 /dist
+.bak

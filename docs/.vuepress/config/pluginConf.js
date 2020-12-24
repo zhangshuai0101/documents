@@ -1,9 +1,22 @@
 const titleMap = require('./titleMap');
-module.exports = {
-  "vuepress-plugin-auto-sidebar": {
-    titleMode: "uppercase",
-    sidebarDepth: 2,
-    titleMap: titleMap
-  },
-  "@vuepress/plugin-back-to-top": true
-};
+const vuepressSide = 
+module.exports = [
+  [
+    require('../lib/index.js'),
+    {
+      titleMode: "uppercase",
+      sidebarDepth: 2,
+      titleMap: titleMap,
+      siderbars: {
+        "/Devops/ICDP/": [
+          {
+            path: '/Devops/ICDP/',
+            title: "测试首页",
+            
+          }
+        ]
+      }
+    }
+  ],
+  ["@vuepress/plugin-back-to-top", true]
+];
