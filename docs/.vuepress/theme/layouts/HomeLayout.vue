@@ -1,10 +1,6 @@
 <template>
   <ParentLayout>
-    <div class="container">
-      <main>
-        <Content/>
-      </main>
-    </div>
+    <component :is="layout"/>
   </ParentLayout>
 </template>
 <script>
@@ -17,16 +13,20 @@ export default {
     }
   },
   mounted() {
-    
+    console.log(this)
+  },
+  computed: {
+    layout () {
+      if (this.$page.path) {
+        if (this.$frontmatter.layout) {
+          return this.$frontmatter.layout
+        }
+        return 'Layout'
+      }
+      return 'NotFound'
+    }
   }
 }
 </script>
-<style lang="scss" scoped>
-  .layout-container{
-    background: #fafafa;
-    height: calc(100vh - 50px);
-    .layout-menu{
-      border-right: 1px solid #e8e8e8;
-    }
-  }
+<style lang="scss">
 </style>

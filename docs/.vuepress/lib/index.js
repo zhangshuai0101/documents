@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-// const colors = require("colors/safe");
+const colors = require("colors/safe");
 const { getMenuPath, getFilename, filterRootMarkdowns, groupBy, genSidebar, titleSort, sidebarSort, findGroupIndex, genNav } = require("./utils");
 const sidebarOptions = require("./options");
 
@@ -44,23 +44,26 @@ module.exports = (options, ctx) => ({
           sortQueueCache.push(current);
         }
       }
-
-      // if (sortQueueCache.length) {
-      //   console.log(colors.red("\nvuepress plugin auto sidebar(精准排序): "), `\n  [${colors.green(sortQueueCache.map(q => `${q.filename}(${q.frontmatter.title})`).join("、"))}] \t共 ${sortQueueCache.length} 个文件指向了不存在的 prev 或 next`);
-      // }
+      if (sortQueueCache.length) {
+        console.log(colors.red("\nvuepress plugin auto sidebar(精准排序): "), `\n  [${colors.green(sortQueueCache.map(q => `${q.filename}(${q.frontmatter.title})`).join("、"))}] \t共 ${sortQueueCache.length} 个文件指向了不存在的 prev 或 next`);
+      }
 
       SIDEBAR = genSidebar(sidebarSort(groupByDepth), mergeOptions);
-      console.log(SIDEBAR)
-      //处理自定义左侧栏
-      for(let key in SIDEBAR){
-        for(let value in mergeOptions.siderbars){
-          if(key == value){
-            SIDEBAR[key][0].children = mergeOptions.siderbars[key];
-            console.log(SIDEBAR['/projectManage/'][0].children)
+      
+      //处理自定义左侧栏 --start--
+      for(let value in mergeOptions.siderbars){
+        for(let key in SIDEBAR){
+          if(key.indexOf(value) != -1 && key != value){
+            delete SIDEBAR[key]
           }
         }
+        if(SIDEBAR[value] != undefined){
+          SIDEBAR[value][0].children = [];
+          SIDEBAR[value][0].children.push.apply(SIDEBAR[value][0].children,mergeOptions.siderbars[value]);
+        }
       }
-      
+      //处理自定义左侧栏 --end--
+
       const nav = genNav(SIDEBAR);
       const dest = path.join(ctx.sourceDir, ".vuepress/nav.js");
 

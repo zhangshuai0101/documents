@@ -30,5 +30,9 @@ module.exports = {
     config.resolveLoader
       .modules
       .add(path.resolve(__dirname, './node_modules'))
+    config.module.rule('images')
+      .test(/\.(png|jpe?g|gif|webp|PNG|bmp)(\?.*)?$/)
+      .use('url-loader')
+      .loader('url-loader')
   }
 }

@@ -1,30 +1,17 @@
 <template>
-  <ParentLayout>
-    <component :is="layout"/>
-  </ParentLayout>
+  <component v-if="dynamicComponent" :is="dynamicComponent"></component>
 </template>
 <script>
-import ParentLayout from '@parent-theme/layouts/Layout.vue'
 export default {
-  components: { ParentLayout },
   data() {
     return {
-
+      dynamicComponent: null
     }
   },
-  mounted() {
-    console.log(this)
-  },
-  computed: {
-    layout () {
-      if (this.$page.path) {
-        if (this.$frontmatter.layout) {
-          return this.$frontmatter.layout
-        }
-        return 'Layout'
-      }
-      return 'NotFound'
-    }
+  mounted () {
+    import('./HomeLayout').then(module => {
+      this.dynamicComponent = module.default
+    })
   }
 }
 </script>
